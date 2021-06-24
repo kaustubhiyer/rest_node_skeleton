@@ -3,20 +3,21 @@ const { Schema, model } = require("mongoose");
 const post = new Schema(
   {
     title: {
-      type: "String",
+      type: String,
       required: true,
     },
     content: {
-      type: "String",
+      type: String,
       required: true,
     },
     imageUrl: {
-      type: "String",
+      type: String,
       required: true,
     },
     creator: {
-      type: Object,
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
   },
   { timestamps: true }

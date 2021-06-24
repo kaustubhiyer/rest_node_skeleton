@@ -8,6 +8,7 @@ const multer = require("multer");
 
 // Routes import
 const feedRoutes = require("./routes/feed");
+const authRoutes = require("./routes/auth");
 
 // Initialize
 const app = express();
@@ -45,13 +46,16 @@ app.use(
 );
 
 app.use("/feed", feedRoutes);
+app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
   console.log(err);
   const status = err.status || 500;
   const msg = err.message;
+  const data = err.data;
   return res.status(status).json({
     message: msg,
+    data,
   });
 });
 
